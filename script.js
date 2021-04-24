@@ -1,27 +1,17 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var passwordText = document.querySelector("#password");
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
+  passwordText.value = '';
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-//Arrays of uppercase alphabets, lowercase alphabets, numbers and special characters
-var uppercaseAlphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var lowercaseAlphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var numbers = [0,1, 2, 3, 4, 5, 6, 7, 8, 9];
-var specialCharacters = ['!', '”', '#', '$', '%', '&', '’', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '^', '_', '|'];
-//Empty arrays that the password, reserved words and all the four arrays will be added in one array.
-var newPassword = [];
-var reservedWords = [];
-var container = [];
 
 //Creating the random number generator function that grabs a letter depending what is added to the parameter
 
@@ -30,11 +20,18 @@ function randomNumber(array) {
   return array[index];
   //return store;
 }
-console.log(randomNumber(uppercaseAlphabets));
 
 function generatePassword() {
 
-  passwordText.value = '';
+  //Arrays of uppercase alphabets, lowercase alphabets, numbers and special characters
+  var uppercaseAlphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  var lowercaseAlphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  var specialCharacters = ['!', '”', '#', '$', '%', '&', '’', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '^', '_', '|'];
+  //Empty arrays that the password, reserved words and all the four arrays will be added in one array.
+  var newPassword = [];
+  var reservedWords = [];
+  var container = [];
 
   //First prompt that ask you to enter the amount of characters you want for your password
   var passwordLength = prompt('How many characters would you like your password to contain?');
@@ -79,9 +76,8 @@ function generatePassword() {
       //Take out the quotes and create a string
       newPassword = newPassword.join('');
       console.log(newPassword);
-      
       return newPassword;
-      
+
 
     } else if (uppercaseQuestion && !lowercaseQuestion && numberQuestion && specialCharacterQuestion) {
 
@@ -102,6 +98,7 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
+      return newPassword;
 
     } else if (!uppercaseQuestion && lowercaseQuestion && numberQuestion && specialCharacterQuestion) {
 
@@ -122,6 +119,7 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
+      return newPassword;
 
     } else if (uppercaseQuestion && lowercaseQuestion && numberQuestion && !specialCharacterQuestion) {
 
@@ -142,8 +140,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
+      return newPassword;
 
-    }else if(uppercaseQuestion && lowercaseQuestion && !numberQuestion && specialCharacterQuestion){
+    } else if (uppercaseQuestion && lowercaseQuestion && !numberQuestion && specialCharacterQuestion) {
 
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomUpperCharThree = randomNumber(uppercaseAlphabets);
@@ -162,8 +161,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
+      return newPassword;
 
-    }else if(uppercaseQuestion && lowercaseQuestion && !numberQuestion && !specialCharacterQuestion){
+    } else if (uppercaseQuestion && lowercaseQuestion && !numberQuestion && !specialCharacterQuestion) {
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomUpperCharFour = randomNumber(uppercaseAlphabets);
       var randomLowerCharFive = randomNumber(lowercaseAlphabets);
@@ -180,8 +180,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
-    
-    }else if(uppercaseQuestion && !lowercaseQuestion && numberQuestion && !specialCharacterQuestion){
+      return newPassword;
+
+    } else if (uppercaseQuestion && !lowercaseQuestion && numberQuestion && !specialCharacterQuestion) {
 
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomUpperCharFive = randomNumber(uppercaseAlphabets);
@@ -199,10 +200,11 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
-      
-    }else if(uppercaseQuestion && !lowercaseQuestion && !numberQuestion && specialCharacterQuestion){
+      return newPassword;
 
-        //Logic is the same as the above if statment but just revised to meet the requirements
+    } else if (uppercaseQuestion && !lowercaseQuestion && !numberQuestion && specialCharacterQuestion) {
+
+      //Logic is the same as the above if statment but just revised to meet the requirements
       var randomUpperCharSix = randomNumber(uppercaseAlphabets);
       var randomSpecialCharacterFour = randomNumber(specialCharacters);
 
@@ -218,8 +220,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
-    
-    }else if(!uppercaseQuestion && lowercaseQuestion && numberQuestion && !specialCharacterQuestion){
+      return newPassword;
+
+    } else if (!uppercaseQuestion && lowercaseQuestion && numberQuestion && !specialCharacterQuestion) {
 
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomLowerCharSix = randomNumber(lowercaseAlphabets);
@@ -237,8 +240,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
-    
-    }else if(!uppercaseQuestion && lowercaseQuestion && !numberQuestion && specialCharacterQuestion){
+      return newPassword;
+
+    } else if (!uppercaseQuestion && lowercaseQuestion && !numberQuestion && specialCharacterQuestion) {
 
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomLowerCharSeven = randomNumber(lowercaseAlphabets);
@@ -256,8 +260,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
+      return newPassword;
 
-    }else if(!uppercaseQuestion && !lowercaseQuestion && numberQuestion && specialCharacterQuestion){
+    } else if (!uppercaseQuestion && !lowercaseQuestion && numberQuestion && specialCharacterQuestion) {
 
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomNumCharSix = randomNumber(numbers);
@@ -275,8 +280,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
-    
-    }else if(uppercaseQuestion && !lowercaseQuestion && !numberQuestion && !specialCharacterQuestion){
+      return newPassword;
+
+    } else if (uppercaseQuestion && !lowercaseQuestion && !numberQuestion && !specialCharacterQuestion) {
 
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomUpperCharSeven = randomNumber(uppercaseAlphabets);
@@ -293,8 +299,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
+      return newPassword;
 
-    }else if(!uppercaseQuestion && lowercaseQuestion && !numberQuestion && !specialCharacterQuestion){
+    } else if (!uppercaseQuestion && lowercaseQuestion && !numberQuestion && !specialCharacterQuestion) {
 
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomLowerCharEight = randomNumber(lowercaseAlphabets);
@@ -311,8 +318,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
+      return newPassword;
 
-    }else if(!uppercaseQuestion && !lowercaseQuestion && numberQuestion && !specialCharacterQuestion){
+    } else if (!uppercaseQuestion && !lowercaseQuestion && numberQuestion && !specialCharacterQuestion) {
 
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomNumCharSeven = randomNumber(numbers);
@@ -329,8 +337,9 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
+      return newPassword;
 
-    }else if(!uppercaseQuestion && !lowercaseQuestion && !numberQuestion && specialCharacterQuestion){
+    } else if (!uppercaseQuestion && !lowercaseQuestion && !numberQuestion && specialCharacterQuestion) {
 
       //Logic is the same as the above if statment but just revised to meet the requirements
       var randomSpecialCharacterSeven = randomNumber(specialCharacters);
@@ -347,14 +356,13 @@ function generatePassword() {
       newPassword = newPassword.concat(reservedWords);
       newPassword = newPassword.join('');
       console.log(newPassword);
+      return newPassword;
 
-    //Else when the user clicks no to all confrims
+      //Else when the user clicks no to all confrims
     } else {
       alert('You need to at least select one option for the password criteria. Please try again');
-      writePassword();
     }
   } else {
     alert('Your password is either less then 8 character or greater then 128 characters please try again.');
-    writePassword();
   }
 }
