@@ -47,6 +47,38 @@ function generatePassword() {
     var numberQuestion = window.confirm('Do you want numerical values?');
     var specialCharacterQuestion = window.confirm('Do you want special characters?');
 
+    //If statment logic to check the users choices that they selected and give the selected output depending on there answers to the promt and confrims
+
+    if (uppercaseQuestion && lowercaseQuestion && numberQuestion && specialCharacterQuestion) {
+
+      //Set up the variables that are running the random number generator using the arrays as the argument.
+      var randomUpperChar = randomNumber(uppercaseAlphabets);
+      var randomLowerChar = randomNumber(lowercaseAlphabets);
+      var randomNumChar = randomNumber(numbers);
+      var randomSpecialCharacter = randomNumber(specialCharacters);
+
+      //Pushing a single character of each of the uppercase alphabet, lowercase alpabet, numbers and special characters.
+      reservedWords.push(randomUpperChar, randomLowerChar, randomNumChar, randomSpecialCharacter);
+
+      //The empty container array will now house all the arrays into one giant array using the concat array method
+      container = container.concat(uppercaseAlphabets, lowercaseAlphabets, numbers, specialCharacters);
+
+      //For loop that will run until the number is less then or equal to the password length given by the user form the prompt
+      
+      for(var i = 0; i <= passwordLength - 5; i++) {
+        //Set a variable that runs the random number function on the container whcih has all the arrays combined
+        var allFour = randomNumber(container);
+        //Push into the variable newPassword which is an empty array
+        newPassword.push(allFour);
+        console.log(newPassword)
+      }
+      //Merge the two arrays newPassword and reservedWords and create a new combined array
+      newPassword = newPassword.concat(reservedWords);
+      //Take out the quotes and create a string
+      newPassword = newPassword.join('');
+      console.log(newPassword);
+    }
+
   } else {
     alert('Your password is either less then 8 character or greater then 128 characters please try again.');
     generatePassword();
